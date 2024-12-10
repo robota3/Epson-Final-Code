@@ -1,0 +1,76 @@
+' 高速運行的基本設定
+Global Real newX(6), newY(6)   ' 儲存新的6個位置
+Function main
+ Integer i
+ Integer h '物體高度
+   
+ h = 6 '0.6cm
+ 
+ newX(0) = 472.129
+ newY(0) = 100.907
+ newX(1) = 465.475
+ newY(1) = 71.314
+ newX(2) = 459.076
+ newY(2) = 42.259
+ newX(3) = 500.711
+ newY(3) = 94.281
+ newX(4) = 494.408
+ newY(4) = 65.701
+ newX(5) = 488.167
+ newY(5) = 36.303
+ 
+ Motor On
+ Power High
+ Speed 100, 50, 50
+ Accel 100, 100, 50, 50, 50, 50
+ SpeedS 2000, 2000, 2000
+ AccelS 20000, 20000, 20000, 10000, 10000, 10000
+
+ Go reset_point ' reset XY
+ 
+ For i = 0 To 2
+  Go block_take -TLZ(100)
+  Go block_take -TLZ((2 - i) * h)
+  Wait 0.1
+  On 11 'close clip
+  Wait 0.1
+  Go block_take -TLZ(100)
+  Wait 0.1
+  Go XY(newX(i), newY(i), CZ(block_put1) + 100, 0, CV(block_put1), CW(block_put1))
+  Go XY(newX(i), newY(i), CZ(block_put1), CU(block_put1), CV(block_put1), CW(block_put1))
+  Off 11 'open clip
+  Wait 0.1
+  Go XY(newX(i), newY(i), CZ(block_put1) + 100, 0, CV(block_put1), CW(block_put1))
+ Next
+
+ For i = 0 To 2
+  Go circle_take -TLZ(100)
+  Go circle_take -TLZ((2 - i) * h)
+  Wait 0.1
+  On 11 'close clip
+  Wait 0.1
+  Go circle_take -TLZ(100)
+  Wait 0.1
+  Go XY(newX(3 + i), newY(3 + i), CZ(circle_put1) + 100, 0, CV(circle_put1), CW(circle_put1))
+  Go XY(newX(3 + i), newY(3 + i), CZ(circle_put1), CU(circle_put1), CV(circle_put1), CW(circle_put1))
+  Off 11 'open clip
+  Wait 0.1
+  Go XY(newX(3 + i), newY(3 + i), CZ(circle_put1) + 100, 0, CV(circle_put1), CW(circle_put1))
+ Next
+
+ On 11 'open clip
+ For i = 0 To 5
+ 	Go XY(newX(i), newY(i), CZ(circle_put1) + 100, 0, CV(circle_put1), CW(circle_put1))
+  	Go XY(newX(i), newY(i), CZ(circle_put1), CU(circle_put1), CV(circle_put1), CW(circle_put1))
+ Next
+ Off 11
+ Go Here -TLZ(100)
+ Go reset_point
+
+
+ 
+Fend
+
+
+
+
