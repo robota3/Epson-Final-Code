@@ -1,0 +1,154 @@
+Function main
+	Integer i
+	Integer count
+	Integer digits
+	Integer currentdigit
+	Long lastPressTime
+	
+	Motor On
+	Power Low
+	Speed 100, 50, 50
+	Accel 100, 100, 50, 50, 50, 50
+	SpeedS 2000, 1000, 1000
+	AccelS 20000, 20000, 10000, 10000, 10000, 10000
+	
+	count = 0
+    lastPressTime = Time(2)
+    
+    Go reset_point
+	
+	Do
+		Print "經過時間", Time(2) - lastPressTime
+		Print "按鈕次數", count
+        If Sw(5) = On Then ' 檢測按鈕 5 是否按下
+            Wait Sw(5) = Off ' 等待按鈕放開
+            count = count + 1 ' 計數加 1
+            lastPressTime = Time(2) ' 更新最後按下時間
+        EndIf
+        
+        ' 檢查是否超過 5 秒沒動作
+        If Time(2) - lastPressTime > 5 Then
+            If count > 0 Then
+                ' 畫圖
+                digits = Len(Str$(count))
+                 
+				
+				For i = 1 To digits
+                    currentdigit = Int(count / (10 ** (digits - i))) Mod 10
+					DrawNumber(currentdigit, i)
+			    Next
+			    
+				Go reset_point
+				' 畫圖
+				
+                count = 0 ' 重置計數器
+                lastPressTime = Time(2)
+            EndIf
+        EndIf
+    Loop
+Fend
+Function DrawNumber(num As Integer, i As Integer)
+	Integer scale
+	Integer m
+
+	scale = 5
+	m = 50
+	
+	If num = 1 Then
+        Go write_home +TLY(-2 * scale + m * i) +TLX(8 * scale)
+	    Go write_home +TLY(-2 * scale + m * i) +TLX(8 * scale) +TLZ(10.237)
+	    Go write_home +TLY(0 * scale + m * i) +TLX(10 * scale) +TLZ(10.237)
+	    Go write_home +TLY(0 * scale + m * i) +TLX(0 * scale) +TLZ(10.237)
+	    Go write_home +TLY(2 * scale + m * i) +TLX(0 * scale) +TLZ(10.237)
+	    Go write_home +TLY(-2 * scale + m * i) +TLX(0 * scale) +TLZ(10.237)
+	    Go write_home +TLY(-2 * scale + m * i) +TLX(0 * scale)
+	EndIf
+    If num = 2 Then
+		Go write_home +TLY(0 * scale + m * i) +TLX(10 * scale)
+		Go write_home +TLY(0 * scale + m * i) +TLX(10 * scale) +TLZ(10.237)
+		Go write_home +TLY(5 * scale + m * i) +TLX(10 * scale) +TLZ(10.237)
+		Go write_home +TLY(5 * scale + m * i) +TLX(5 * scale) +TLZ(10.237)
+		Go write_home +TLY(0 * scale + m * i) +TLX(5 * scale) +TLZ(10.237)
+		Go write_home +TLY(0 * scale + m * i) +TLX(0 * scale) +TLZ(10.237)
+		Go write_home +TLY(5 * scale + m * i) +TLX(0 * scale) +TLZ(10.237)
+		Go write_home +TLY(5 * scale + m * i) +TLX(0 * scale)
+    EndIf
+    If num = 3 Then
+		Go write_home +TLY(0 * scale + m * i) +TLX(10 * scale)
+		Go write_home +TLY(0 * scale + m * i) +TLX(10 * scale) +TLZ(10.237)
+		Go write_home +TLY(5 * scale + m * i) +TLX(10 * scale) +TLZ(10.237)
+		Go write_home +TLY(5 * scale + m * i) +TLX(5 * scale) +TLZ(10.237)
+		Go write_home +TLY(0 * scale + m * i) +TLX(5 * scale) +TLZ(10.237)
+		Go write_home +TLY(5 * scale + m * i) +TLX(5 * scale) +TLZ(10.237)
+		Go write_home +TLY(5 * scale + m * i) +TLX(0 * scale) +TLZ(10.237)
+		Go write_home +TLY(0 * scale + m * i) +TLX(0 * scale) +TLZ(10.237)
+		Go write_home +TLY(0 * scale + m * i) +TLX(0 * scale)
+    EndIf
+    If num = 4 Then
+		Go write_home +TLY(0 * scale + m * i) +TLX(10 * scale)
+		Go write_home +TLY(0 * scale + m * i) +TLX(10 * scale) +TLZ(10.237)
+		Go write_home +TLY(0 * scale + m * i) +TLX(5 * scale) +TLZ(10.237)
+		Go write_home +TLY(5 * scale + m * i) +TLX(5 * scale) +TLZ(10.237)
+		Go write_home +TLY(5 * scale + m * i) +TLX(10 * scale) +TLZ(10.237)
+		Go write_home +TLY(5 * scale + m * i) +TLX(0 * scale) +TLZ(10.237)
+		Go write_home +TLY(5 * scale + m * i) +TLX(0 * scale)
+    EndIf
+    If num = 5 Then
+		Go write_home +TLY(5 * scale + m * i) +TLX(10 * scale)
+		Go write_home +TLY(5 * scale + m * i) +TLX(10 * scale) +TLZ(10.237)
+		Go write_home +TLY(0 * scale + m * i) +TLX(10 * scale) +TLZ(10.237)
+		Go write_home +TLY(0 * scale + m * i) +TLX(5 * scale) +TLZ(10.237)
+		Go write_home +TLY(5 * scale + m * i) +TLX(5 * scale) +TLZ(10.237)
+		Go write_home +TLY(5 * scale + m * i) +TLX(0 * scale) +TLZ(10.237)
+		Go write_home +TLY(0 * scale + m * i) +TLX(0 * scale) +TLZ(10.237)
+		Go write_home +TLY(0 * scale + m * i) +TLX(0 * scale)
+    EndIf
+    If num = 6 Then
+		Go write_home +TLY(5 * scale + m * i) +TLX(10 * scale)
+		Go write_home +TLY(5 * scale + m * i) +TLX(10 * scale) +TLZ(10.237)
+		Go write_home +TLY(0 * scale + m * i) +TLX(10 * scale) +TLZ(10.237)
+		Go write_home +TLY(0 * scale + m * i) +TLX(0 * scale) +TLZ(10.237)
+		Go write_home +TLY(5 * scale + m * i) +TLX(0 * scale) +TLZ(10.237)
+		Go write_home +TLY(5 * scale + m * i) +TLX(5 * scale) +TLZ(10.237)
+		Go write_home +TLY(0 * scale + m * i) +TLX(5 * scale) +TLZ(10.237)
+		Go write_home +TLY(0 * scale + m * i) +TLX(5 * scale)
+    EndIf
+    If num = 7 Then
+		Go write_home +TLY(0 * scale + m * i) +TLX(10 * scale)
+		Go write_home +TLY(0 * scale + m * i) +TLX(10 * scale) +TLZ(10.237)
+		Go write_home +TLY(5 * scale + m * i) +TLX(10 * scale) +TLZ(10.237)
+		Go write_home +TLY(0 * scale + m * i) +TLX(0 * scale) +TLZ(10.237)
+		Go write_home +TLY(0 * scale + m * i) +TLX(0 * scale)
+    EndIf
+    If num = 8 Then
+		Go write_home +TLY(0 * scale + m * i) +TLX(0 * scale)
+		Go write_home +TLY(0 * scale + m * i) +TLX(0 * scale) +TLZ(10.237)
+		Go write_home +TLY(0 * scale + m * i) +TLX(10 * scale) +TLZ(10.237)
+		Go write_home +TLY(5 * scale + m * i) +TLX(10 * scale) +TLZ(10.237)
+		Go write_home +TLY(5 * scale + m * i) +TLX(0 * scale) +TLZ(10.237)
+		Go write_home +TLY(0 * scale + m * i) +TLX(0 * scale) +TLZ(10.237)
+		Go write_home +TLY(0 * scale + m * i) +TLX(5 * scale) +TLZ(10.237)
+		Go write_home +TLY(5 * scale + m * i) +TLX(5 * scale) +TLZ(10.237)
+		Go write_home +TLY(5 * scale + m * i) +TLX(5 * scale)
+    EndIf
+    If num = 9 Then
+		Go write_home +TLY(5 * scale + m * i) +TLX(5 * scale)
+		Go write_home +TLY(5 * scale + m * i) +TLX(5 * scale) +TLZ(10.237)
+		Go write_home +TLY(5 * scale + m * i) +TLX(10 * scale) +TLZ(10.237)
+		Go write_home +TLY(0 * scale + m * i) +TLX(10 * scale) +TLZ(10.237)
+		Go write_home +TLY(0 * scale + m * i) +TLX(5 * scale) +TLZ(10.237)
+		Go write_home +TLY(5 * scale + m * i) +TLX(5 * scale) +TLZ(10.237)
+		Go write_home +TLY(5 * scale + m * i) +TLX(0 * scale) +TLZ(10.237)
+		Go write_home +TLY(5 * scale + m * i) +TLX(0 * scale)
+    EndIf
+    If num = 0 Then
+		Go write_home +TLY(0 * scale + m * i) +TLX(10 * scale)
+		Go write_home +TLY(0 * scale + m * i) +TLX(10 * scale) +TLZ(10.237)
+		Go write_home +TLY(5 * scale + m * i) +TLX(10 * scale) +TLZ(10.237)
+		Go write_home +TLY(5 * scale + m * i) +TLX(0 * scale) +TLZ(10.237)
+		Go write_home +TLY(0 * scale + m * i) +TLX(0 * scale) +TLZ(10.237)
+		Go write_home +TLY(0 * scale + m * i) +TLX(10 * scale) +TLZ(10.237)
+		Go write_home +TLY(0 * scale + m * i) +TLX(10 * scale)
+    EndIf
+Fend
+
