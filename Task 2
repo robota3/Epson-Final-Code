@@ -1,0 +1,56 @@
+' 高速運行的基本設定
+Function queuee
+ Integer i
+ Integer h '物體高度
+ Integer m '擺放橫移距離
+   
+ h = 7 '0.6cm
+ m = 30 '3cm
+	
+ Motor On
+ Power High
+ Speed 100, 50, 50
+ Accel 100, 100, 50, 50, 50, 50
+ SpeedS 2000, 2000, 2000
+ AccelS 20000, 20000, 20000, 10000, 10000, 10000
+ 
+ Off 8
+ Go reset_point ' reset XY
+
+ For i = 0 To 9
+ 'block
+  Go block_take -TLZ(100)
+  Go block_take -TLZ(60) +TLZ(i * h) -TLZ(i * 0.65)
+  Wait 0.1
+  On 8 'close clip
+  Wait 0.1
+  Speed 5, 2, 2
+  Go Here -TLZ(10)
+  Speed 100, 50, 50
+  Go block_take -TLZ(100)
+  Go put_ -TLZ(200)
+  Go put_ -TLZ(i * 2 * h) +TLZ(i * 2.5) -TLZ(2)
+  Off 8 'open clip
+  Wait 0.1
+  Go Here -TLZ(5)
+ 'circle
+  Go circle_take -TLZ(100)
+  Go circle_take -TLZ(60) +TLZ(i * h) -TLZ(i * 0.65)
+  Wait 0.1
+  On 8 'close clip
+  Wait 0.1
+  Speed 5, 2, 2
+  Go Here -TLZ(10)
+  Speed 100, 50, 50
+  Go circle_take -TLZ(100)
+  Go put_ -TLZ(200)
+  Go put_ -TLZ(i * 2 * h + h) +TLZ(i * 2.5) -TLZ(2)
+  Off 8 'open clip
+  Wait 0.1
+  Go Here -TLZ(5)
+  
+ Next
+	
+ Go Here -TLZ(100)
+ Go reset_point
+Fend
