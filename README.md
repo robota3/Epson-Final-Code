@@ -11,11 +11,12 @@ This repository contains the final implementation code for the Epson robot, desi
 
 1. [Overview](#overview)  
 2. [Features](#features)  
-3. [Installation](#installation)  
-4. [Usage](#usage)  
-5. [Project Structure](#project-structure)  
-6. [Contributing](#contributing)  
-7. [License](#license)
+3. [Installation](#installation)
+4. [Division of Responsibilities](#Division-of-Responsibilities)
+5. [Usage](#usage)  
+6. [Project Structure](#project-structure)  
+7. [Contributing](#contributing)  
+8. [License](#license)
 
 ---
 
@@ -39,7 +40,12 @@ This project demonstrates the capabilities of an Epson robot in automating pick-
 - Efficient and accurate pick-and-place operations.
 - Robust stacking with error handling for alignment issues.
 - Real-time integration for counting and data logging.
-
+  
+## Division of Responsibilities
+- **Programming**: M11351016 田祖恩
+- **Electrical Control**: M11351019 閻亭頤
+- **Mechanical Design**: M11351018 蘇柔伊
+- 
 ## Installation
 
 ### Prerequisites
