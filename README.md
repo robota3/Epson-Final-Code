@@ -45,7 +45,7 @@ This project demonstrates the capabilities of an Epson robot in automating pick-
 - **Programming**: M11351016 田祖恩
 - **Electrical Control**: M11351019 閻亭頤
 - **Mechanical Design**: M11351018 蘇柔伊
-- 
+  
 ## Installation
 
 ### Prerequisites
