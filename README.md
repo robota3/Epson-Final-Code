@@ -28,8 +28,8 @@ This project demonstrates the capabilities of an Epson robot in automating pick-
 
 - **Task 1: Pick and Place**
   - The robot uses a **gripper** to pick up an object from a designated location and place it at the target location.
-  - 3D printing design of the gripper:
-    
+  ![3D printing design of the gripper](Epson-Final-Code/S__31776945)
+  ![3D printing design of the gripper](Epson-Final-Code/S__31776946)
   
 - **Task 2: Stacking**
   - The robot stacks 20 objects in a predetermined order or pattern.
