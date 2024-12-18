@@ -27,13 +27,13 @@ This project demonstrates the capabilities of an Epson robot in automating pick-
 ### Task Details
 
 - **Task 1: Pick and Place**
-  - The robot picks an object from a specified location and places it at a target location.
+  - The robot uses a **gripper** to pick up an object from a designated location and place it at the target location.
   
 - **Task 2: Stacking**
   - The robot stacks objects in a predetermined order or pattern.
 
 - **Task 3: Counting and Writing**
-  - The robot integrates with a counting mechanism and records the count.
+  - The robot integrates with a counting mechanism and records the count. Press the button as many times as you want, and the robot will write down that number, no matter how large the descriptor is.
 
 ## Features
 
